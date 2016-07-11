@@ -27,7 +27,7 @@ var handlebars = require('handlebars')
 // --------------------------------------------------------------------------------------------------------------------
 
 var defaults = {
-  type    : 'proxy',
+  type    : 'static',
   confDir : '/etc/nginx/sites-enabled',
   logDir  : '/var/log/nginx',
 }
@@ -62,6 +62,12 @@ var types = {
   test  : {
     template : fs.readFileSync(path.join(dir, 'test'), { encoding : 'utf8' }),
     defaults : {},
+  },
+  drupal8  : {
+    template : fs.readFileSync(path.join(dir, 'drupal8'), { encoding : 'utf8' }),
+    defaults : {
+      // dir - required
+    },
   },
 }
 

@@ -1,0 +1,84 @@
+# --- + DRUPAL 8 + ---
+
+# Template variables:
+#
+# * domain = {{{domain}}}
+# * name = {{{name}}}
+# * type = {{{type}}}
+# * dir = {{{dir}}}
+
+server {
+    server_name {{{domain}}};
+    listen 80;
+
+    root {{{dir}}};
+
+    access_log {{{logDir}}}/{{{name}}}-access.log;
+    error_log  {{{logDir}}}/{{{name}}}-error.log;
+
+    location = /favicon.ico {
+        log_not_found off;
+        access_log off;
+    }
+
+    location = /robots.txt {
+        allow all;
+        log_not_found off;
+        access_log off;
+    }
+
+    location ~* \.(txt|log)$ {
+        allow 192.168.0.0/16;
+        deny all;
+    }
+
+    location ~ \..*/.*\.php$ {
+        return 403;
+    }
+
+    location ~ ^/sites/.*/private/ {
+        return 403;
+    }
+
+    location ~* ^/.well-known/ {
+        allow all;
+    }
+
+    location ~ (^|/)\. {
+        return 403;
+    }
+
+    location / {
+        try_files $uri /index.php?$query_string;
+    }
+
+    location @rewrite {
+        rewrite ^/(.*)$ /index.php?q=$1;
+    }
+
+    location ~ /vendor/.*\.php$ {
+        deny all;
+        return 404;
+    }
+
+    location ~ '\.php$|^/update.php' {
+        # NOTE: Set "cgi.fix_pathinfo = 0;" in php.ini
+        fastcgi_split_path_info ^(.+?\.php)(|/.*)$;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_intercept_errors on;
+        fastcgi_pass 127.0.0.1:9000;
+    }
+
+    location ~ ^/sites/.*/files/styles/ {
+        try_files $uri @rewrite;
+    }
+
+    location ~* \.(js|css|png|jpg|jpeg|gif|svg|ico|mpg|mpeg|mp4|gifv|woff|woff2|eot|ttf)$ {
+        expires max;
+        log_not_found off;
+    }
+}
+
+# --- - DRUPAL 8 - ---

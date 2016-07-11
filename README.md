@@ -107,6 +107,20 @@ $ nginx-generator \
       /etc/nginx/sites-enabled/vhost
 ```
 
+## DRUPAL 8 ##
+
+To generate a single Drupal 8 installation, pass the usual three `--name`, `--domain` and `--type` then
+pass `dir` as a `--var`:
+
+```
+$ nginx-generator \
+      --name org-chilts-drupal8 \
+      --domain static-drupal8.org \
+      --type drupal8 \
+      --var dir=/home/chilts/htdocs \
+      /etc/nginx/sites-enabled/org-chilts-drupal8
+```
+
 ## Roadmap ##
 
 * add ability to set and define config for basic auth for any site
