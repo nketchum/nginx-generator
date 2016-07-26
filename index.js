@@ -69,6 +69,12 @@ var types = {
       // dir - required
     },
   },
+  symfony2  : {
+    template : fs.readFileSync(path.join(dir, 'symfony2'), { encoding : 'utf8' }),
+    defaults : {
+      // dir - required
+    },
+  },
 }
 
 function generator(domain, name, type, opts, callback) {
