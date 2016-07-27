@@ -6,10 +6,17 @@
 # * name = {{{name}}}
 # * type = {{{type}}}
 # * dir = {{{dir}}}
+# * keyDir = {{{keyDir}}}
+# * keyFile = {{{keyFile}}}
+# * crtDir = {{{crtDir}}}
+# * crtFile = {{{crtFile}}}
 
 server {
     server_name {{{domain}}};
     listen 80;
+    listen 443 ssl;
+    ssl_certificate {{{crtDir}}}/{{{crtFile}}};
+    ssl_certificate_key {{{keyDir}}}/{{{keyFile}}};
 
     root {{{dir}}};
 

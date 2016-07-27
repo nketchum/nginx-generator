@@ -30,6 +30,10 @@ var defaults = {
   type    : 'static',
   confDir : '/etc/nginx/sites-enabled',
   logDir  : '/var/log/nginx',
+  keyDir  : '/var/www/ssl',
+  keyFile : 'localhost.key',
+  crtDir  : '/var/www/ssl',
+  crtFile : 'localhost.crt',
 }
 
 var dir = path.join(__dirname, 'vhosts')

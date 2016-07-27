@@ -6,12 +6,19 @@
 # * name = {{{name}}}
 # * type = {{{type}}}
 # * to   = {{{to}}}
+# * keyDir = {{{keyDir}}}
+# * keyFile = {{{keyFile}}}
+# * crtDir = {{{crtDir}}}
+# * crtFile = {{{crtFile}}}
 
 server {
     server_name {{{domain}}};
     listen 80;
+    listen 443 ssl;
+    ssl_certificate {{{crtDir}}}/{{{crtFile}}};
+    ssl_certificate_key {{{keyDir}}}/{{{keyFile}}};
 
-    rewrite ^ http://{{{to}}}$uri permanent;
+    rewrite ^(http|https)://{{{to}}}$uri permanent;
 
     access_log {{{logDir}}}/{{{name}}}-access.log;
     error_log  {{{logDir}}}/{{{name}}}-error.log;
