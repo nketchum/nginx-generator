@@ -30,9 +30,9 @@ var defaults = {
   type    : 'static',
   confDir : '/etc/nginx/sites-enabled',
   logDir  : '/var/log/nginx',
-  keyDir  : '/var/www/ssl',
+  keyDir  : '/var/www/etc/ssl',
   keyFile : 'localhost.key',
-  crtDir  : '/var/www/ssl',
+  crtDir  : '/var/www/etc/ssl',
   crtFile : 'localhost.crt',
 }
 
