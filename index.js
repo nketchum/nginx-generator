@@ -29,10 +29,10 @@ var handlebars = require('handlebars')
 var defaults = {
   type    : 'static',
   confDir : '/etc/nginx/sites-enabled',
-  logDir  : '/var/log/nginx',
-  keyDir  : '/var/www/etc/ssl',
+  logDir  : '/var/logs/Sites',
+  keyDir  : '/var/certs',
   keyFile : 'localhost.key',
-  crtDir  : '/var/www/etc/ssl',
+  crtDir  : '/var/certs',
   crtFile : 'localhost.crt',
 }
 
